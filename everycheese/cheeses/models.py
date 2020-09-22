@@ -2,9 +2,12 @@ from django.db import models
 
 from autoslug import AutoSlugField
 from model_utils.models import TimeStampedModel
+from django_countries.fields import CountryField 
 
 class Cheese(TimeStampedModel):
     name = models.CharField("Name of Cheese", max_length=255)
+    
+    country_of_origin = CountryField("Country of Origin", blank =True)
     
     slug = AutoSlugField("Cheese Addres", 
         unique=True, always_update=False, populate_from="name")
